@@ -73,7 +73,7 @@ Spring boot 将所有的功能抽取出来做成了一个个starters
     应用配置文件 server.port=8081 可以修改一些默认设置
     
 # Spring boot 配置
-## 配置文件
+## 配置文件 @ConfigurationProperties
 ### 全局配置文件 
 - application.properties
 - application.yml
@@ -112,8 +112,29 @@ Spring boot 将所有的功能抽取出来做成了一个个starters
         pets: [cat,dog,pig]
 
         ```
-    
-   
+## 配置方式
+###@ConfigurationProperties Person.java
+###@Value Person1.java
+- Value("字面量/ ${key}从环境变量 配置文件中获取值 / #{Spell} spring表达式")
+- 在类的每一个属性上面加@Value(" ")  
+###区别
+
+| 区别 | @ConfigurationProperties | @Value |
+|-|-|-|
+| 功能 | 批量注入配置文件中的属性 | 一个个指定 |
+| 松散绑定 last_name lastName | 支持 | 不支持 |
+| SPEL 表达式 | 不支持 | 支持 |
+| JSR303 | 数据校验 @Validated | 支持 | 不支持 |
+
+如果只是在某个业务逻辑中需要获取一下配置文件中的某项值 使用@Value
+如果专门编写了一个javaBean来和配置文件进行映射 就直接使用@ConfigurationProperties
+
+
+
+
+  
+  
+  
     
 
     

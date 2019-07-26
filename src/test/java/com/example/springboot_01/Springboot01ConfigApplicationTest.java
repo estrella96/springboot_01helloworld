@@ -1,6 +1,7 @@
 package com.example.springboot_01;
 
 import com.example.springboot_01.bean.Person;
+import com.example.springboot_01.bean.Person1;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class Springboot01ConfigApplicationTest {
 
     @Autowired
-    Person person;
-
+//    Person person;
+    Person1 person;
     @Test
     public  void contextLoads(){
         System.out.println(person);
