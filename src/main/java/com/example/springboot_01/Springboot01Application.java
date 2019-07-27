@@ -2,9 +2,10 @@ package com.example.springboot_01;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ImportResource;
 
 //主程序
-
+// @ImportResource(locations = {"classpath:beans.xml"})
 @SpringBootApplication
 public class Springboot01Application {
 

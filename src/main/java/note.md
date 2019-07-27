@@ -129,6 +129,36 @@ Spring boot 将所有的功能抽取出来做成了一个个starters
 如果只是在某个业务逻辑中需要获取一下配置文件中的某项值 使用@Value
 如果专门编写了一个javaBean来和配置文件进行映射 就直接使用@ConfigurationProperties
 
+### @PropertySource  @ImportResource
+- @PropertySource 加载指定位置的配置文件 
+    person.properties
+    @PropertySource(value={"classpath:person.properties"})
+- @ImportResource 导入Spring的配置文件 让配置文件内容生效
+    xml
+    @ImportResource(locations = {"classpath:beans.xml"})
+
+###Spring Boot 推荐给容器中加组件方式
+- 全注解
+- 1 配置类====配置文件 
+    config.MyAppConfig.java
+    @Configuration 指明当前类是一个配置类
+- 2 使用@Bean给容器中添加组件
+    ```java
+    @Configuration
+           public class MyAppConfig {
+               @Bean
+               //将方法的返回值添加到容器中 容器中这个组件默认的id是方法名
+               public HelloService helloService(){
+                   System.out.println("配置类@Bean 给容器中添加组件");
+                   return new HelloService();
+           
+               }
+           }
+
+    ```
+### 配置文件占位符
+  
+
 
 
 
