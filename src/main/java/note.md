@@ -157,6 +157,13 @@ Spring boot 将所有的功能抽取出来做成了一个个starters
 
     ```
 ### 配置文件占位符
+- RandomValuePropertySource配置文件可以使用随机数
+    ${random.value} ${random.int} ${random.long}
+    ${random.int(10)}
+- 属性配置占位符
+    可以在配置文件中引用前面配置过的属性
+    ${app.name:默认值} 指定找不到属性时的默认值
+    
   
 
 

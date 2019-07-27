@@ -2,8 +2,8 @@ server:
   port: 8081
 
 person:
-  lastName: jane
-  age: 18
+  lastName: jane${random.uid}
+  age: ${random.int}
   boss: false
   birth: 2011/12/12
   maps: {k1: v1,k2: 12}
