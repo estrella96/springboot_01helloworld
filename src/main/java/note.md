@@ -164,7 +164,80 @@ Spring boot 将所有的功能抽取出来做成了一个个starters
     可以在配置文件中引用前面配置过的属性
     ${app.name:默认值} 指定找不到属性时的默认值
     
-  
+## Profile 多环境配置
+对不同环境提供不同配置功能的支持 通过激活 指定参数等方式快速切换环境
+- 多profile文件形式
+    - application-{profile}.properties:
+      profile: dev(开发) prod（生产）
+      指定激活 application.properties里面写：spring.profiles.active=dev
+- yml支持多文档块  
+    spring:
+      profiles:
+        active: dev
+    ---
+    server:
+        port:8081
+    spring:
+        profiles:dev
+    ---
+- 激活指定profile
+   - 配置文件中指定 spring.profiles.active=dev
+   - 命令行
+    --spring.profiles.active=dev
+   - 虚拟机参数
+    -Dspring.profiles.active=dev
+
+## 配置文件加载位置
+- 扫描以下位置的application.properties/application.yml作为默认配置文件
+    - file:./config/
+    - file./
+    - classpath:/config/
+    - classpath:/
+    优先级从高到低 这四个位置都会加载 互补配置 同样的内容高覆盖低
+    - spring.config.location 可以改变默认配置（运维时使用）
+        项目打包好之后 使用命令行参数形式 启动项目的时候指定配置文件的新位置 
+        指定配置文件和默认配置文件一起起作用 互补配置
+## 外部配置加载顺序
+优先级从高到低
+
+    - Devtools global settings properties on your home directory (~/.spring-boot-devtools.properties when devtools is active).
+      
+    - @TestPropertySource annotations on your tests.
+      
+    - properties attribute on your tests. Available on @SpringBootTest and the test annotations for testing a particular slice of your application.
+      
+    - Command line arguments.命令行参数
+      
+    - Properties from SPRING_APPLICATION_JSON (inline JSON embedded in an environment variable or system property).
+      
+    - ServletConfig init parameters.
+      
+    - ServletContext init parameters.
+      
+    - JNDI attributes from java:comp/env. 
+      
+    - Java System properties (System.getProperties()).
+      
+    - OS environment variables.
+      
+    - A RandomValuePropertySource that has properties only in random.*.
+      
+    - Profile-specific application properties outside of your packaged jar (application-{profile}.properties and YAML variants). jar包外部的application-{profile}.properties and YAML 文件
+      
+    - Profile-specific application properties packaged inside your jar (application-{profile}.properties and YAML variants). jar包内的。。。。。
+      
+    - Application properties outside of your packaged jar (application.properties and YAML variants). jar包外不带spring.profile
+      
+    - Application properties packaged inside your jar (application.properties and YAML variants). jar包内不带。。。。
+      
+    - @PropertySource annotations on your @Configuration classes.
+      
+    - Default properties (specified by setting SpringApplication.setDefaultProperties).
+      
+
+     
+    
+        
 
 
 
